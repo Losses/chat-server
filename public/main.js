@@ -160,12 +160,12 @@ $(function() {
 
   $('#login_form').submit((event) => {
     setUsername();
-    event.defaultPrevented = true;
+    event.preventDefault();
   });
 
   $('#send_form').submit((event) => {
     sendMessage();
-    event.defaultPrevented = true;
+    event.preventDefault();
   });
 
   $inputMessage.on('input', function() {
