@@ -1,0 +1,146 @@
+/* Fix user-agent */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+  word-wrap: break-word;
+}
+
+/* Pages */
+
+.pages {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.page {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+/* Login Page */
+
+.login {
+  background: rgba(255, 255, 255 ,0.7);
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login_card > .mdl-card__title {
+  padding-top: 80px;
+  color: #fff;
+  background: url('assets/images/login_background.png') bottom right 15% no-repeat gray;
+}
+
+.submit_wrap {
+  text-align: right;
+}
+
+/* Font */
+
+.log {
+  color: gray;
+  font-size: 70%;
+  margin: 5px;
+  text-align: center;
+}
+
+/* Messages */
+
+.chatArea {
+  padding-top: 50px;
+}
+
+.messages {
+  height: 100%;
+  padding: 0;
+}
+
+.username {
+  font-weight: 700;
+  overflow: hidden;
+  padding-right: 15px;
+  text-align: right;
+}
+
+/* Send message panel */
+
+#send_form {
+  width: 100%;
+  top: 0;
+  background: white;
+  position: fixed;
+  display: flex;
+  align-items: center;
+}
+
+#send_form > input {
+  width: 100%;
+  padding: 10px;
+  border: 0;
+  font-size: 16px;
+}
+
+#send_form > button {
+  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#send_form > button > img {
+  width: 20px;
+  display: block;
+}
+
+/*Scroll Button*/
+.scroll_button {
+  right: 40px;
+  bottom: 40px;
+  position: fixed;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 200ms;
+  visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scroll_button.show{
+  opacity: 1;
+  transform: scale(1);
+  visibility: visible;
+}
+
+/*Style Fix*/
+.mdl-list__item-text-body, .mdl-list__item--three-line {
+  height: auto !important; 
+}
+
+.mdl-list__item--three-line {
+  padding: 5px 20px;
+}
+
+.mdl-card__supporting-text {
+  margin: 0 5%;
+}
