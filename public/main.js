@@ -31,7 +31,7 @@ $(function() {
     } else {
       message += "there are " + data.numUsers + " participants";
     }
-    log(message);
+    log(message, { prepend: true });
   }
 
   // Sets the client's username
@@ -196,9 +196,7 @@ $(function() {
     connected = true;
     // Display the welcome message
     var message = "Welcome to my guestbook!";
-    log(message, {
-      prepend: true
-    });
+    log(message, { prepend: true });
     addParticipantsMessage(data);
   });
 
@@ -209,13 +207,13 @@ $(function() {
 
   // Whenever the server emits 'user joined', log it in the chat body
   socket.on('user joined', function (data) {
-    log(data.username + ' joined');
+    log(data.username + ' joined', { prepend: true });
     addParticipantsMessage(data);
   });
 
   // Whenever the server emits 'user left', log it in the chat body
   socket.on('user left', function (data) {
-    log(data.username + ' left');
+    log(data.username + ' left', { prepend: true });
     addParticipantsMessage(data);
     removeChatTyping(data);
   });
@@ -231,18 +229,18 @@ $(function() {
   });
 
   socket.on('disconnect', function () {
-    log('you have been disconnected');
+    log('you have been disconnected', { prepend: true });
   });
 
   socket.on('reconnect', function () {
-    log('you have been reconnected');
+    log('you have been reconnected', { prepend: true });
     if (username) {
       socket.emit('add user', username);
     }
   });
 
   socket.on('reconnect_error', function () {
-    log('attempt to reconnect has failed');
+    log('attempt to reconnect has failed', { prepend: true });
   });
 
   socket.on('init done', () => inited = true);
