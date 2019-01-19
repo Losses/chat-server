@@ -45,6 +45,12 @@ ul {
   align-items: center;
 }
 
+
+.login_card {
+  position: absolute;
+  top: 50px;
+}
+
 .login_card > .mdl-card__title {
   padding-top: 80px;
   color: #fff;
@@ -67,6 +73,7 @@ ul {
 /* Messages */
 
 .chatArea {
+  min-height: 426px;
   padding-top: 50px;
 }
 

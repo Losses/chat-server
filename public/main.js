@@ -251,4 +251,34 @@ $(function () {
   })
   socket.emit('recent message');
 
+  // Send message of the height of the chat page
+  // If it's in an iFrame
+  const $body = document.body;
+  const $chatArea = document.querySelector('.chatArea');
+
+  const inIframe = window.location !== window.parent.location;
+
+  let NEED_REFRESH_PARIENT = true;
+
+  MutationObserver = window.MutationObserver;
+  DocumentObserver = new MutationObserver(() => {
+    if (NEED_REFRESH_PARIENT) {
+      NEED_REFRESH_PARIENT = false;
+      setTimeout(() => NEED_REFRESH_PARIENT = true, 200);
+
+      if (inIframe) {
+        window.parent.postMessage({ message: $chatArea.scrollHeight }, '*');
+      }
+    }
+  });
+
+  DocumentObserverConfig = {
+    attributes: true,
+    childList: true,
+    characterData: true,
+    subtree: true
+  };
+
+  DocumentObserver.observe($body, DocumentObserverConfig);
+
 });
