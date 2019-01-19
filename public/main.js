@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
   const FADE_TIME = 150; // ms
   const TYPING_TIMER_LENGTH = 400; // ms
 
@@ -24,7 +24,7 @@ $(function() {
 
   let socket = io();
 
-  function addParticipantsMessage (data) {
+  function addParticipantsMessage(data) {
     var message = '';
     if (data.numUsers === 1) {
       message += "there's 1 participant";
@@ -35,7 +35,7 @@ $(function() {
   }
 
   // Sets the client's username
-  function setUsername () {
+  function setUsername() {
     username = cleanInput($usernameInput.val().trim());
     email = cleanInput($emailInput.val().trim());
 
@@ -52,7 +52,7 @@ $(function() {
   }
 
   // Sends a chat message
-  function sendMessage () {
+  function sendMessage() {
     var message = $inputMessage.val();
     // Prevent markup from being injected into the message
     message = cleanInput(message);
@@ -65,14 +65,14 @@ $(function() {
   }
 
   // Log a message
-  function log (message, options) {
+  function log(message, options) {
     var $el = $('<li>').addClass('log').text(message);
     addMessageElement($el, options);
   }
 
   // Adds the visual chat message to the message list
-  function addChatMessage (data, options) {
-    if(!data.initMsg && !inited){
+  function addChatMessage(data, options) {
+    if (!data.initMsg && !inited) {
       setTimeout(() => addChatMessage(data, options), 200);
       return false;
     }
@@ -91,12 +91,12 @@ $(function() {
   }
 
   // Adds the visual chat typing message
-  function addChatTyping (data) {
+  function addChatTyping(data) {
     //no idea about how to design this.
   }
 
   // Removes the visual chat typing message
-  function removeChatTyping (data) {
+  function removeChatTyping(data) {
     //no idea about how to design this.
   }
 
@@ -105,7 +105,7 @@ $(function() {
   // options.fade - If the element should fade-in (default = true)
   // options.prepend - If the element should prepend
   //   all other messages (default = false)
-  function addMessageElement (el, options) {
+  function addMessageElement(el, options) {
     var $el = $(el);
 
     // Setup default options
@@ -132,12 +132,12 @@ $(function() {
   }
 
   // Prevents input from having injected markup
-  function cleanInput (input) {
+  function cleanInput(input) {
     return $('<div/>').text(input).text();
   }
 
   // Updates the typing event
-  function updateTyping () {
+  function updateTyping() {
     if (connected) {
       if (!typing) {
         typing = true;
@@ -168,7 +168,7 @@ $(function() {
     event.preventDefault();
   });
 
-  $inputMessage.on('input', function() {
+  $inputMessage.on('input', function () {
     updateTyping();
   });
 
@@ -179,14 +179,14 @@ $(function() {
   });
 
   $window.scroll(() => {
-    if(window.scrollY > 20)
+    if (window.scrollY > 20)
       $scrollButton.addClass('show');
     else
       $scrollButton.removeClass('show');
   });
 
   $scrollButton.click(() => {
-    $("html,body").animate({scrollTop: 0}, 300, 'swing');
+    $("html,body").animate({ scrollTop: 0 }, 300, 'swing');
   })
 
   // Socket events
@@ -202,7 +202,7 @@ $(function() {
 
   // Whenever the server emits 'new message', update the chat body
   socket.on('new message', function (data) {
-    addChatMessage(data, {prepend: true});
+    addChatMessage(data, { prepend: true });
   });
 
   // Whenever the server emits 'user joined', log it in the chat body
